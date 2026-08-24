@@ -1,0 +1,194 @@
+/* Deployment-only styles are intentionally minimal. The public instance uses
+   the Atlas visual system from the pinned Physics-Atlas source baseline. */
+
+html {
+  background: #07111d;
+}
+
+.public-information {
+  position: absolute;
+  top: 28px;
+  right: 310px;
+  z-index: 7;
+}
+
+.public-information-trigger {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--panel-border);
+  border-radius: 9px;
+  color: #b7c8ce;
+  background: rgba(8, 20, 32, 0.86);
+  cursor: pointer;
+  place-items: center;
+  backdrop-filter: blur(12px);
+}
+
+.public-information-trigger span {
+  color: var(--cyan);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.public-information-trigger:hover,
+.public-information-trigger:focus-visible,
+.public-information[data-open="true"] .public-information-trigger {
+  border-color: rgba(97, 215, 222, 0.42);
+  color: #f4fbfb;
+  background: rgba(10, 35, 45, 0.92);
+}
+
+.public-information-panel {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  width: min(350px, calc(100vw - 32px));
+  padding: 17px;
+  border: 1px solid var(--panel-border);
+  border-radius: 13px;
+  color: #dce9ec;
+  background: rgba(7, 18, 30, 0.97);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(18px);
+}
+
+.public-information-panel header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.public-information-panel header p,
+.public-information-panel header h2,
+.public-information-summary,
+.public-information-footnote {
+  margin: 0;
+}
+
+.public-information-panel header p {
+  color: var(--cyan);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.public-information-panel header h2 {
+  margin-top: 5px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.12rem;
+  font-weight: 500;
+}
+
+.public-information-panel header button {
+  padding: 0 3px;
+  border: 0;
+  color: #718893;
+  font-size: 1.1rem;
+  line-height: 1;
+  background: transparent;
+  cursor: pointer;
+}
+
+.public-information-panel header button:hover,
+.public-information-panel header button:focus-visible {
+  color: #f4fbfb;
+}
+
+.public-information-summary {
+  margin-top: 13px;
+  color: #93aab4;
+  font-size: 0.66rem;
+  line-height: 1.55;
+}
+
+.public-information-panel nav {
+  display: grid;
+  gap: 3px;
+  margin-top: 13px;
+}
+
+.public-information-panel nav a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #d7e4e7;
+  text-decoration: none;
+}
+
+.public-information-panel nav a:hover,
+.public-information-panel nav a:focus-visible {
+  border-color: rgba(97, 215, 222, 0.18);
+  background: rgba(97, 215, 222, 0.06);
+  outline: none;
+}
+
+.public-information-panel nav span,
+.public-information-panel nav strong,
+.public-information-panel nav small {
+  display: block;
+}
+
+.public-information-panel nav strong {
+  font-size: 0.67rem;
+  font-weight: 650;
+}
+
+.public-information-panel nav small {
+  margin-top: 3px;
+  color: #718893;
+  font-size: 0.56rem;
+  line-height: 1.35;
+}
+
+.public-information-panel nav i {
+  color: var(--cyan);
+  font-size: 0.7rem;
+  font-style: normal;
+}
+
+.public-information-footnote {
+  margin-top: 12px;
+  padding-top: 11px;
+  border-top: 1px solid rgba(151, 190, 203, 0.12);
+  color: #647d88;
+  font-size: 0.55rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .public-information {
+    position: fixed;
+    top: 64px;
+    right: auto;
+    left: 16px;
+  }
+
+  .public-information-panel {
+    position: fixed;
+    top: 108px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    max-height: calc(100svh - 124px);
+    overflow: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .public-information-panel {
+    padding: 15px;
+  }
+
+  .public-information-panel nav a {
+    padding: 8px;
+  }
+}
