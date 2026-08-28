@@ -16,13 +16,11 @@ A deliberately bounded INSPIRE-HEP metadata pilot for testing ingestion, normali
 
 Canonical institution and researcher identities, temporal affiliations, typed external resources, entity-aware search, graph-backed profiles, and non-destructive update lineage.
 
-The public instance is pinned to `v3.0.3-alpha`.
-
-## Planned
-
 ### v3.0.4 — Live Scientific Data Infrastructure
 
-Future infrastructure for versioned ingestion, storage, API access, and operational updates. This work is not part of the current public deployment and has not been implemented here.
+PostgreSQL persistence, migrations, FastAPI access, incremental source connectors, identity-safe update processing, resource monitoring, and the frontend API repository boundary.
+
+The public instance is pinned to `v3.0.4-alpha`. Its GitHub Pages build remains in static/pilot fallback mode because a public backend is not currently deployed. The API-backed mode is implemented and deployment-ready, but it is not presented as live until a separately operated API, database, and worker are configured.
 
 ## Scope boundary
 

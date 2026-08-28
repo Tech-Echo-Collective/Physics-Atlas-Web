@@ -1,9 +1,19 @@
 import {
+  AtlasDataSourceRequestGate,
+  assessDataSourceObservations,
   atlasDataSourceOptions,
   buildDataSourceAwareAtlasUrl as buildUpstreamDataSourceAwareAtlasUrl,
+  getInitialSourceFallback,
+  hasRenderableCountryObservations,
+  mergeMetricObservationsById,
+  neutralLiveMapNotice,
+  reconcileNavigationForDataSource,
   resolveAtlasDataSource,
+  resolveMetricForDataSource,
   type AtlasDataSourceId,
+  type AtlasDataSourceObservationAssessment,
   type AtlasDataSourceOption,
+  type AtlasNavigationReconciliationOptions,
 } from '../../atlas/src/data/AtlasDataSources'
 
 function getDeploymentBasePath(): string {
@@ -23,8 +33,24 @@ function addDeploymentBase(url: string): string {
   return `${deploymentBasePath}${url.startsWith('/') ? url : `/${url}`}`
 }
 
-export type { AtlasDataSourceId, AtlasDataSourceOption }
-export { atlasDataSourceOptions, resolveAtlasDataSource }
+export type {
+  AtlasDataSourceId,
+  AtlasDataSourceObservationAssessment,
+  AtlasDataSourceOption,
+  AtlasNavigationReconciliationOptions,
+}
+export {
+  AtlasDataSourceRequestGate,
+  assessDataSourceObservations,
+  atlasDataSourceOptions,
+  getInitialSourceFallback,
+  hasRenderableCountryObservations,
+  mergeMetricObservationsById,
+  neutralLiveMapNotice,
+  reconcileNavigationForDataSource,
+  resolveAtlasDataSource,
+  resolveMetricForDataSource,
+}
 
 export function buildDataSourceAwareAtlasUrl(
   atlasUrl: string,

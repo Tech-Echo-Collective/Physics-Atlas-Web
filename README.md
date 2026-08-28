@@ -8,11 +8,11 @@ Public URL: <https://tech-echo-collective.github.io/Physics-Atlas-Web/>
 
 ## Source baseline
 
-The `atlas/` submodule is pinned to Physics Atlas `v3.0.3-alpha` at commit `c3ce6c8bb4c3d9714db3b327eca5e503dab00334`.
+The `atlas/` submodule is pinned to Physics Atlas `v3.0.4-alpha` at commit `09f5d855a3ef28d687f5f888f0227a8f911b69de`.
 
 This deployment repository contains only the public entry wrapper, GitHub Pages routing adapter, project-information control, and deployment workflow. Scientific models, data, the Metric Engine, and the main application remain in `Tech-Echo-Collective/Physics-Atlas`.
 
-No v3.0.4 live-data infrastructure is included.
+The pinned source includes the v3.0.4 live-data architecture: the FastAPI service, PostgreSQL migrations, incremental worker, provider connectors, resource monitoring, and the frontend `APIRepository`. GitHub Pages hosts only the static frontend and cannot operate those services. Because no public Atlas API endpoint is configured in this repository, the public instance continues to default safely to the synthetic framework and retains the bounded INSPIRE pilot. Live API mode becomes available only in a build configured with `VITE_ATLAS_API_URL`; the three data modes remain isolated.
 
 ## Exploration path
 

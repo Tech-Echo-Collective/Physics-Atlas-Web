@@ -91,7 +91,7 @@ export function PublicInformation() {
         >
           <header>
             <div>
-              <p>Public Atlas · v3.0.3-alpha</p>
+              <p>Public Atlas · v3.0.4-alpha</p>
               <h2>Project information</h2>
             </div>
             <button

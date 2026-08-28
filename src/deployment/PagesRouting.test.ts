@@ -52,6 +52,15 @@ describe('GitHub Pages Atlas routing', () => {
     )
   })
 
+  it('keeps a configured live API source inside the Pages project path', () => {
+    expect(
+      buildDataSourceAwareAtlasUrl(
+        '/atlas/physics?year=2026',
+        'live-api',
+      ),
+    ).toBe('/Physics-Atlas-Web/atlas/physics?year=2026&source=live-api')
+  })
+
   it('does not double-prefix an already adapted URL', () => {
     expect(
       buildDataSourceAwareAtlasUrl(
