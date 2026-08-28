@@ -18,7 +18,7 @@ const projectLinks = [
   {
     label: 'Methodology',
     detail: 'Metric vocabulary, interpretation, and limits',
-    href: `${MAIN_REPOSITORY}/blob/main/docs/metric-model.md`,
+    href: `${MAIN_REPOSITORY}/blob/main/docs/metric-methodology-v1.md`,
   },
   {
     label: 'Roadmap',
@@ -91,7 +91,7 @@ export function PublicInformation() {
         >
           <header>
             <div>
-              <p>Public Atlas · v3.0.4-alpha</p>
+              <p>Public Atlas · v3.0.5-alpha</p>
               <h2>Project information</h2>
             </div>
             <button

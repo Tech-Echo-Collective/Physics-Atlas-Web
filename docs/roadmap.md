@@ -20,9 +20,13 @@ Canonical institution and researcher identities, temporal affiliations, typed ex
 
 PostgreSQL persistence, migrations, FastAPI access, incremental source connectors, identity-safe update processing, resource monitoring, and the frontend API repository boundary.
 
-The public instance retains `v3.0.4-alpha` as its release baseline and pins the validated Physics Atlas `main` commit `45da54535d604400d27a8577cd9228dc715b83e2`. The GitHub Pages build uses the operated Railway API through `APIRepository` as its normal data path. Static fixtures and the bounded pilot remain internal reproducibility and fallback resources rather than normal public dataset choices.
+### v3.0.5 — Stabilization & Scientific Validation
 
-Live scientific metadata is active, but reviewed metric observations are not yet published. The current public map therefore remains neutral and explicitly distinguishes missing values from zero; activating unvalidated scores is outside this milestone.
+Viewport-safe map controls, reviewable candidate definitions for the five base metrics, metric-specific normalization and fail-closed activation gates, reconstructable observation metadata, independent identity-review validation, and compact public methodology/status information.
+
+The public instance pins the validated Physics Atlas `v3.0.5-alpha` release commit `b1974d29334d7c4d1d109601787b9c339ba2e653`. The GitHub Pages build uses the operated Railway API through `APIRepository` as its normal data path. Static fixtures and the bounded pilot remain internal reproducibility and fallback resources rather than normal public dataset choices.
+
+Live scientific metadata is active, but all five base metric definitions remain experimental candidates and no reviewed metric observations are published. The current public map therefore remains neutral and explicitly distinguishes missing values from zero; activating unvalidated scores is outside this milestone.
 
 ## Scope boundary
 

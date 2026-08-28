@@ -8,11 +8,11 @@ Public URL: <https://tech-echo-collective.github.io/Physics-Atlas-Web/>
 
 ## Source baseline
 
-The `atlas/` submodule is pinned to the validated Physics Atlas `main` commit `45da54535d604400d27a8577cd9228dc715b83e2`. The preserved `v3.0.4-alpha` release tag remains the architectural baseline; the later `main` commits contain deployment and CI readiness corrections only.
+The `atlas/` submodule is pinned to the validated Physics Atlas `v3.0.5-alpha` release commit `b1974d29334d7c4d1d109601787b9c339ba2e653`. Existing release tags, including `v3.0.4-alpha`, remain unchanged.
 
 This deployment repository contains only the public entry wrapper, GitHub Pages routing adapter, project-information control, and deployment workflow. Scientific models, data, the Metric Engine, and the main application remain in `Tech-Echo-Collective/Physics-Atlas`.
 
-The pinned source includes the v3.0.4 live-data architecture: the FastAPI service, PostgreSQL migrations, incremental worker, provider connectors, resource monitoring, and the frontend `APIRepository`. GitHub Pages hosts the static frontend while the separately operated production service supplies live scientific metadata.
+The pinned source preserves the v3.0.4 live-data architecture and adds the v3.0.5 stabilization and scientific-validation foundation: candidate metric contracts, fail-closed activation gates, reconstructable observation metadata, identity-review validation, compact public methodology/status information, and viewport-safe controls. GitHub Pages hosts the static frontend while the separately operated production service supplies live scientific metadata.
 
 The public build is configured with `VITE_ATLAS_API_URL` and uses `APIRepository` on clean Atlas routes. Synthetic fixtures and the bounded INSPIRE pilot remain available internally for tests, reproducibility, and an explicit failure fallback, but they are not normal public selector choices. Repository and dataset-kind guards keep these modes isolated. The production API currently exposes no reviewed metric observations, so the public map remains explicitly neutral: missing data is not interpreted as zero and no unvalidated score is displayed.
 
@@ -90,7 +90,7 @@ Deep Atlas URLs render through the Pages `404.html` fallback. GitHub Pages still
 
 - [About Physics Atlas](https://github.com/Tech-Echo-Collective/Physics-Atlas#physics-atlas)
 - [Architecture](https://github.com/Tech-Echo-Collective/Physics-Atlas/blob/main/docs/architecture.md)
-- [Metric methodology](https://github.com/Tech-Echo-Collective/Physics-Atlas/blob/main/docs/metric-model.md)
+- [Metric methodology](https://github.com/Tech-Echo-Collective/Physics-Atlas/blob/main/docs/metric-methodology-v1.md)
 - [Metric Engine](https://github.com/Tech-Echo-Collective/Physics-Atlas/blob/main/docs/metric-engine.md)
 - [Entity resolution](https://github.com/Tech-Echo-Collective/Physics-Atlas/blob/main/docs/entity-resolution.md)
 - [Knowledge graph](https://github.com/Tech-Echo-Collective/Physics-Atlas/blob/main/docs/knowledge-graph.md)
