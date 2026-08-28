@@ -8,11 +8,13 @@ Public URL: <https://tech-echo-collective.github.io/Physics-Atlas-Web/>
 
 ## Source baseline
 
-The `atlas/` submodule is pinned to Physics Atlas `v3.0.4-alpha` at commit `09f5d855a3ef28d687f5f888f0227a8f911b69de`.
+The `atlas/` submodule is pinned to the validated Physics Atlas `main` commit `45da54535d604400d27a8577cd9228dc715b83e2`. The preserved `v3.0.4-alpha` release tag remains the architectural baseline; the later `main` commits contain deployment and CI readiness corrections only.
 
 This deployment repository contains only the public entry wrapper, GitHub Pages routing adapter, project-information control, and deployment workflow. Scientific models, data, the Metric Engine, and the main application remain in `Tech-Echo-Collective/Physics-Atlas`.
 
-The pinned source includes the v3.0.4 live-data architecture: the FastAPI service, PostgreSQL migrations, incremental worker, provider connectors, resource monitoring, and the frontend `APIRepository`. GitHub Pages hosts only the static frontend and cannot operate those services. Because no public Atlas API endpoint is configured in this repository, the public instance continues to default safely to the synthetic framework and retains the bounded INSPIRE pilot. Live API mode becomes available only in a build configured with `VITE_ATLAS_API_URL`; the three data modes remain isolated.
+The pinned source includes the v3.0.4 live-data architecture: the FastAPI service, PostgreSQL migrations, incremental worker, provider connectors, resource monitoring, and the frontend `APIRepository`. GitHub Pages hosts the static frontend while the separately operated production service supplies live scientific metadata.
+
+The public build is configured with `VITE_ATLAS_API_URL` and uses `APIRepository` on clean Atlas routes. Synthetic fixtures and the bounded INSPIRE pilot remain available internally for tests, reproducibility, and an explicit failure fallback, but they are not normal public selector choices. Repository and dataset-kind guards keep these modes isolated. The production API currently exposes no reviewed metric observations, so the public map remains explicitly neutral: missing data is not interpreted as zero and no unvalidated score is displayed.
 
 ## Exploration path
 
@@ -53,11 +55,18 @@ For an existing clone:
 git submodule update --init --recursive
 ```
 
+Run the public live configuration locally with:
+
+```bash
+VITE_ATLAS_API_URL=https://physics-atlas-api-production.up.railway.app/api npm run dev
+```
+
 Quality checks:
 
 ```bash
 npm run typecheck
 npm run lint
+npm test
 npm run build
 ```
 
@@ -67,9 +76,11 @@ Pushes to `main` automatically run the GitHub Pages workflow. It:
 
 1. checks out this repository and the pinned Physics Atlas submodule;
 2. installs the locked dependencies;
-3. builds with the `/Physics-Atlas-Web/` project base path;
-4. creates the GitHub Pages single-page-app fallback;
-5. publishes only `dist/`.
+3. requires the repository Actions variable `VITE_ATLAS_API_URL` to contain an HTTPS endpoint;
+4. runs lint and deployment tests;
+5. builds with the configured API endpoint and the `/Physics-Atlas-Web/` project base path;
+6. creates the GitHub Pages single-page-app fallback;
+7. publishes only `dist/`.
 
 The workflow can also be run manually from the repository Actions page.
 

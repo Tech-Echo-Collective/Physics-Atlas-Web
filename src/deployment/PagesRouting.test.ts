@@ -6,7 +6,12 @@ import {
   createDefaultAtlasNavigation,
   resolveAtlasLocation,
 } from './AtlasNavigation'
-import { buildDataSourceAwareAtlasUrl } from './AtlasDataSources'
+import {
+  buildDeploymentDataSourceAwareAtlasUrl,
+  getDeploymentDataSourceOptions,
+  getInitialSourceFallback,
+  resolveDeploymentAtlasDataSource,
+} from './AtlasDataSources'
 
 const dataset = atlasDatasetSchema.parse(demoData)
 
@@ -37,15 +42,20 @@ describe('GitHub Pages Atlas routing', () => {
     const upstreamUrl = buildAtlasUrl(navigation, dataset)
 
     expect(
-      buildDataSourceAwareAtlasUrl(upstreamUrl, 'synthetic-framework'),
+      buildDeploymentDataSourceAwareAtlasUrl(
+        upstreamUrl,
+        'synthetic-framework',
+        false,
+      ),
     ).toBe('/Physics-Atlas-Web/atlas/physics/gr-qc?year=2026')
   })
 
   it('keeps data-source switches inside the Pages project path', () => {
     expect(
-      buildDataSourceAwareAtlasUrl(
+      buildDeploymentDataSourceAwareAtlasUrl(
         '/atlas/physics/hep-th?year=2026',
         'inspire-hep-pilot',
+        false,
       ),
     ).toBe(
       '/Physics-Atlas-Web/atlas/physics/hep-th?year=2026&source=inspire-hep-pilot',
@@ -54,19 +64,66 @@ describe('GitHub Pages Atlas routing', () => {
 
   it('keeps a configured live API source inside the Pages project path', () => {
     expect(
-      buildDataSourceAwareAtlasUrl(
+      buildDeploymentDataSourceAwareAtlasUrl(
         '/atlas/physics?year=2026',
         'live-api',
+        true,
       ),
-    ).toBe('/Physics-Atlas-Web/atlas/physics?year=2026&source=live-api')
+    ).toBe('/Physics-Atlas-Web/atlas/physics?year=2026')
   })
 
   it('does not double-prefix an already adapted URL', () => {
     expect(
-      buildDataSourceAwareAtlasUrl(
+      buildDeploymentDataSourceAwareAtlasUrl(
         '/Physics-Atlas-Web/atlas/physics?year=2026',
         'synthetic-framework',
+        false,
       ),
     ).toBe('/Physics-Atlas-Web/atlas/physics?year=2026')
+  })
+
+  it('uses live data by default and hides fixture sources in public builds', () => {
+    expect(
+      getDeploymentDataSourceOptions(true).map((source) => source.id),
+    ).toEqual(['live-api'])
+    expect(resolveDeploymentAtlasDataSource('', true, true)).toBe('live-api')
+  })
+
+  it('keeps explicit fixture routes available for reproducibility', () => {
+    expect(
+      resolveDeploymentAtlasDataSource(
+        '?source=synthetic-framework',
+        true,
+        true,
+      ),
+    ).toBe('synthetic-framework')
+    expect(
+      resolveDeploymentAtlasDataSource(
+        '?source=inspire-hep-pilot',
+        true,
+        true,
+      ),
+    ).toBe('inspire-hep-pilot')
+  })
+
+  it('serializes a production fallback so it cannot retry live mode', () => {
+    expect(
+      buildDeploymentDataSourceAwareAtlasUrl(
+        '/atlas/physics?year=2026',
+        getInitialSourceFallback(false, 'live-api'),
+        true,
+      ),
+    ).toBe(
+      '/Physics-Atlas-Web/atlas/physics?year=2026&source=synthetic-framework',
+    )
+  })
+
+  it('retains all internal sources when no public API is configured', () => {
+    expect(
+      getDeploymentDataSourceOptions(false).map((source) => source.id),
+    ).toEqual(['synthetic-framework', 'inspire-hep-pilot', 'live-api'])
+    expect(resolveDeploymentAtlasDataSource('', false, false)).toBe(
+      'synthetic-framework',
+    )
   })
 })
