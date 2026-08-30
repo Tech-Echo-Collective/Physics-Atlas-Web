@@ -4,7 +4,7 @@ The official public deployment entry for [Physics Atlas](https://github.com/Tech
 
 Opening the website enters the interactive Atlas directly. The default state is the global Physics-domain heatmap, with field and year controls available on the map. Project documentation is available through a secondary information control and does not replace the Atlas surface.
 
-Public URL: <https://tech-echo-collective.github.io/Physics-Atlas-Web/>
+Public URL: <https://techecho.org/Physics-Atlas-Web/>
 
 ## Source baseline
 
