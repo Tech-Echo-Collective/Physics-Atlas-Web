@@ -4,7 +4,7 @@ The official public deployment entry for [Physics Atlas](https://github.com/Tech
 
 Opening the website enters the interactive Atlas directly. The default state is the global Physics-domain heatmap, with field and year controls available on the map. Project documentation is available through a secondary information control and does not replace the Atlas surface.
 
-Public URL: <https://techecho.org/Physics-Atlas-Web/>
+Public URL: <https://atlas.techecho.org/>
 
 ## Source baseline
 
@@ -78,9 +78,14 @@ Pushes to `main` automatically run the GitHub Pages workflow. It:
 2. installs the locked dependencies;
 3. requires the repository Actions variable `VITE_ATLAS_API_URL` to contain an HTTPS endpoint;
 4. runs lint and deployment tests;
-5. builds with the configured API endpoint and the `/Physics-Atlas-Web/` project base path;
+5. builds with the configured API endpoint at the `https://atlas.techecho.org/` custom-domain root;
 6. creates the GitHub Pages single-page-app fallback;
 7. publishes only `dist/`.
+
+The build copies `public/CNAME` into `dist/CNAME` with the value
+`atlas.techecho.org`. The repository's GitHub Pages custom-domain setting must
+also be set to `atlas.techecho.org`; DNS should point that subdomain to the
+organization's GitHub Pages host.
 
 The workflow can also be run manually from the repository Actions page.
 

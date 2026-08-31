@@ -10,7 +10,7 @@ const deploymentDataSources = fileURLToPath(
 )
 
 export default defineConfig({
-  base: '/Physics-Atlas-Web/',
+  base: '/',
   plugins: [react()],
   resolve: {
     alias: [

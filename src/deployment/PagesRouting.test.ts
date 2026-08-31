@@ -17,13 +17,13 @@ const dataset = atlasDatasetSchema.parse(demoData)
 
 describe('GitHub Pages Atlas routing', () => {
   beforeEach(() => {
-    vi.stubEnv('BASE_URL', '/Physics-Atlas-Web/')
+    vi.stubEnv('BASE_URL', '/')
   })
 
-  it('opens a direct field route beneath the repository base path', () => {
+  it('opens a direct field route at the custom-domain root', () => {
     const navigation = resolveAtlasLocation(
       {
-        pathname: '/Physics-Atlas-Web/atlas/physics/hep-th',
+        pathname: '/atlas/physics/hep-th',
         search: '?year=2026',
       },
       dataset,
@@ -34,7 +34,7 @@ describe('GitHub Pages Atlas routing', () => {
     expect(navigation.selectedYear).toBe(2026)
   })
 
-  it('keeps generated navigation inside the Pages project path', () => {
+  it('keeps generated navigation at the custom-domain root', () => {
     const navigation = {
       ...createDefaultAtlasNavigation(dataset),
       selectedFieldId: 'gr-qc',
@@ -47,39 +47,37 @@ describe('GitHub Pages Atlas routing', () => {
         'synthetic-framework',
         false,
       ),
-    ).toBe('/Physics-Atlas-Web/atlas/physics/gr-qc?year=2026')
+    ).toBe('/atlas/physics/gr-qc?year=2026')
   })
 
-  it('keeps data-source switches inside the Pages project path', () => {
+  it('keeps data-source switches at the custom-domain root', () => {
     expect(
       buildDeploymentDataSourceAwareAtlasUrl(
         '/atlas/physics/hep-th?year=2026',
         'inspire-hep-pilot',
         false,
       ),
-    ).toBe(
-      '/Physics-Atlas-Web/atlas/physics/hep-th?year=2026&source=inspire-hep-pilot',
-    )
+    ).toBe('/atlas/physics/hep-th?year=2026&source=inspire-hep-pilot')
   })
 
-  it('keeps a configured live API source inside the Pages project path', () => {
+  it('keeps a configured live API source at the custom-domain root', () => {
     expect(
       buildDeploymentDataSourceAwareAtlasUrl(
         '/atlas/physics?year=2026',
         'live-api',
         true,
       ),
-    ).toBe('/Physics-Atlas-Web/atlas/physics?year=2026')
+    ).toBe('/atlas/physics?year=2026')
   })
 
   it('does not double-prefix an already adapted URL', () => {
     expect(
       buildDeploymentDataSourceAwareAtlasUrl(
-        '/Physics-Atlas-Web/atlas/physics?year=2026',
+        '/atlas/physics?year=2026',
         'synthetic-framework',
         false,
       ),
-    ).toBe('/Physics-Atlas-Web/atlas/physics?year=2026')
+    ).toBe('/atlas/physics?year=2026')
   })
 
   it('uses live data by default and hides fixture sources in public builds', () => {
@@ -113,9 +111,7 @@ describe('GitHub Pages Atlas routing', () => {
         getInitialSourceFallback(false, 'live-api'),
         true,
       ),
-    ).toBe(
-      '/Physics-Atlas-Web/atlas/physics?year=2026&source=synthetic-framework',
-    )
+    ).toBe('/atlas/physics?year=2026&source=synthetic-framework')
   })
 
   it('retains all internal sources when no public API is configured', () => {
