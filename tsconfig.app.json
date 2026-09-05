@@ -4,7 +4,8 @@
     "target": "es2023",
     "lib": ["ES2023", "DOM"],
     "module": "esnext",
-    "types": ["vite/client"],
+    "types": ["vite/client", "vitest/globals", "node"],
+    "strict": true,
     "allowArbitraryExtensions": true,
     "skipLibCheck": true,
 
@@ -19,8 +20,9 @@
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
+    "erasableSyntaxOnly": false,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "atlas/src"]
+  "include": ["src", "atlas/src"],
+  "exclude": ["atlas/src/**/*.test.ts", "atlas/src/**/*.test.tsx"]
 }

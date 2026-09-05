@@ -25,13 +25,16 @@ This deployment repository contains only the public entry wrapper, GitHub Pages 
 
 The pinned source preserves the v3.0.4 live-data architecture and adds the v3.0.5 stabilization and scientific-validation foundation: candidate metric contracts, fail-closed activation gates, reconstructable observation metadata, identity-review validation, compact public methodology/status information, and viewport-safe controls. GitHub Pages hosts the static frontend while the separately operated production service supplies live scientific metadata.
 
-The public build is configured with `VITE_ATLAS_API_URL` and uses `APIRepository` on clean Atlas routes. Synthetic fixtures and the bounded INSPIRE pilot remain available internally for tests, reproducibility, and an explicit failure fallback, but they are not normal public selector choices. Repository and dataset-kind guards keep these modes isolated. The production API currently exposes no reviewed metric observations, so the public map remains explicitly neutral: missing data is not interpreted as zero and no unvalidated score is displayed.
+The public build is configured with `VITE_ATLAS_API_URL` and uses `APIRepository` on clean Atlas routes. Missing configuration or API failure stays unavailable/neutral: public builds never automatically fall back to synthetic or pilot data. Those modes remain accessible only through explicit internal source routes for tests/reproducibility, not normal public selector choices. Repository and dataset-kind guards keep these modes isolated. The production API currently exposes no validated metric observations, so missing data is not interpreted as zero and no unvalidated score is displayed.
 
 The naming alignment updates public identity, family wording and source links. The source retains
 the exact-five fail-closed metric gate; staging storage tooling is not bundled
-into the browser or connected to the production worker. Local validation passes
-type checking, lint, all 12 deployment/branding tests, and the production API
-build with the existing Pages root/deep-route fallback.
+into the browser or connected to the production worker. The September 5
+fail-closed refinement passes actual app and build-config type checking, lint,
+all 16 deployment/branding tests, and a production API build with the existing
+Pages root/deep-route fallback. The root TypeScript project contains only
+references, so type checking now explicitly checks both child projects; upstream
+tests remain validated by source CI, independently of Web adapter tests.
 
 ## Exploration path
 

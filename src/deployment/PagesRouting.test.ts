@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import demoData from '../../atlas/src/data/demo/atlas.json'
 import { atlasDatasetSchema } from '../../atlas/src/domain/schemas'
 import {
@@ -9,7 +9,7 @@ import {
 import {
   buildDeploymentDataSourceAwareAtlasUrl,
   getDeploymentDataSourceOptions,
-  getInitialSourceFallback,
+  getDeploymentInitialSourceFallback,
   resolveDeploymentAtlasDataSource,
 } from './AtlasDataSources'
 
@@ -18,6 +18,10 @@ const dataset = atlasDatasetSchema.parse(demoData)
 describe('GitHub Pages Atlas routing', () => {
   beforeEach(() => {
     vi.stubEnv('BASE_URL', '/')
+  })
+
+  afterEach(() => {
+    vi.unstubAllEnvs()
   })
 
   it('opens a direct field route at the custom-domain root', () => {
@@ -104,14 +108,51 @@ describe('GitHub Pages Atlas routing', () => {
     ).toBe('inspire-hep-pilot')
   })
 
-  it('serializes a production fallback so it cannot retry live mode', () => {
+  it('keeps unavailable public live data unavailable instead of selecting a fixture', () => {
+    expect(resolveDeploymentAtlasDataSource('', false, true)).toBe('live-api')
     expect(
-      buildDeploymentDataSourceAwareAtlasUrl(
-        '/atlas/physics?year=2026',
-        getInitialSourceFallback(false, 'live-api'),
-        true,
-      ),
-    ).toBe('/atlas/physics?year=2026&source=synthetic-framework')
+      getDeploymentInitialSourceFallback(false, 'live-api', true),
+    ).toBeNull()
+    expect(
+      getDeploymentInitialSourceFallback(true, 'live-api', true),
+    ).toBeNull()
+    expect(
+      getDeploymentInitialSourceFallback(false, 'inspire-hep-pilot', true),
+    ).toBeNull()
+  })
+
+  it('retains isolated development fallback behavior outside public deployments', () => {
+    expect(
+      getDeploymentInitialSourceFallback(false, 'live-api', false),
+    ).toBe('synthetic-framework')
+    expect(
+      getDeploymentInitialSourceFallback(true, 'live-api', false),
+    ).toBeNull()
+  })
+
+  it.each(['', 'not-an-api-url'])(
+    'fails closed in production with unavailable API configuration %j',
+    async (apiUrl) => {
+      vi.resetModules()
+      vi.stubEnv('PROD', true)
+      vi.stubEnv('VITE_ATLAS_API_URL', apiUrl)
+      const deployment = await import('./AtlasDataSources')
+
+      expect(deployment.atlasDataSourceOptions.map((source) => source.id)).toEqual([
+        'live-api',
+      ])
+      expect(deployment.resolveAtlasDataSource('', false)).toBe('live-api')
+      expect(deployment.getInitialSourceFallback(false, 'live-api')).toBeNull()
+      expect(
+        deployment.resolveAtlasDataSource('?source=synthetic-framework', false),
+      ).toBe('synthetic-framework')
+    },
+  )
+
+  it('preserves explicitly selected fixture routes when the public API is unavailable', () => {
+    expect(
+      resolveDeploymentAtlasDataSource('?source=inspire-hep-pilot', false, true),
+    ).toBe('inspire-hep-pilot')
   })
 
   it('retains all internal sources when no public API is configured', () => {

@@ -3,7 +3,7 @@ import {
   assessDataSourceObservations,
   atlasDataSourceOptions as upstreamAtlasDataSourceOptions,
   buildDataSourceAwareAtlasUrl as buildUpstreamDataSourceAwareAtlasUrl,
-  getInitialSourceFallback,
+  getInitialSourceFallback as getUpstreamInitialSourceFallback,
   hasRenderableCountryObservations,
   mergeMetricObservationsById,
   neutralLiveMapNotice,
@@ -17,7 +17,8 @@ import {
 } from '../../atlas/src/data/AtlasDataSources'
 import { normalizeAtlasApiBaseUrl } from '../../atlas/src/data/APIRepository'
 
-const isConfiguredPublicLiveDeployment =
+const isPublicDeployment =
+  import.meta.env.PROD ||
   normalizeAtlasApiBaseUrl(import.meta.env.VITE_ATLAS_API_URL) !== null
 
 function getDeploymentBasePath(): string {
@@ -46,7 +47,6 @@ export type {
 export {
   AtlasDataSourceRequestGate,
   assessDataSourceObservations,
-  getInitialSourceFallback,
   hasRenderableCountryObservations,
   mergeMetricObservationsById,
   neutralLiveMapNotice,
@@ -63,8 +63,30 @@ export function getDeploymentDataSourceOptions(
 }
 
 export const atlasDataSourceOptions = getDeploymentDataSourceOptions(
-  isConfiguredPublicLiveDeployment,
+  isPublicDeployment,
 )
+
+/** Public source failures must remain unavailable, never substitute demo data. */
+export function getDeploymentInitialSourceFallback(
+  hasUsableDataset: boolean,
+  failedSourceId: AtlasDataSourceId,
+  publicLiveDeployment: boolean,
+): AtlasDataSourceId | null {
+  return publicLiveDeployment
+    ? null
+    : getUpstreamInitialSourceFallback(hasUsableDataset, failedSourceId)
+}
+
+export function getInitialSourceFallback(
+  hasUsableDataset: boolean,
+  failedSourceId: AtlasDataSourceId,
+): AtlasDataSourceId | null {
+  return getDeploymentInitialSourceFallback(
+    hasUsableDataset,
+    failedSourceId,
+    isPublicDeployment,
+  )
+}
 
 export function resolveDeploymentAtlasDataSource(
   search: string,
@@ -83,7 +105,9 @@ export function resolveDeploymentAtlasDataSource(
     return requestedSource
   }
 
-  return liveApiAvailable ? 'live-api' : 'synthetic-framework'
+  // Missing configuration is a visible load error in AtlasExplorer, not
+  // permission to render synthetic scientific observations on a public route.
+  return 'live-api'
 }
 
 export function resolveAtlasDataSource(
@@ -93,7 +117,7 @@ export function resolveAtlasDataSource(
   return resolveDeploymentAtlasDataSource(
     search,
     liveApiAvailable,
-    isConfiguredPublicLiveDeployment,
+    isPublicDeployment,
   )
 }
 
@@ -138,6 +162,6 @@ export function buildDataSourceAwareAtlasUrl(
   return buildDeploymentDataSourceAwareAtlasUrl(
     atlasUrl,
     sourceId,
-    isConfiguredPublicLiveDeployment,
+    isPublicDeployment,
   )
 }
