@@ -1,6 +1,10 @@
-# Physics Atlas Web
+# Atlas Physica Web
 
-The official public deployment entry for [Physics Atlas](https://github.com/Tech-Echo-Collective/Physics-Atlas).
+The official public deployment entry for [Atlas Physica](https://github.com/Tech-Echo-Collective/Physics-Atlas).
+
+Atlas Physica is developed and maintained by Tech Echo Collective. Previously
+named Physics Atlas, the product retains its existing repository names,
+technical identifiers, deployment URLs and historical release records.
 
 Opening the website enters the interactive Atlas directly. The default state is the global Physics-domain heatmap, with field and year controls available on the map. Project documentation is available through a secondary information control and does not replace the Atlas surface.
 
@@ -8,13 +12,19 @@ Public URL: <https://atlas.techecho.org/>
 
 ## Source baseline
 
-The `atlas/` submodule is pinned to the validated Physics Atlas `v3.0.5-alpha` release commit `b1974d29334d7c4d1d109601787b9c339ba2e653`. Existing release tags, including `v3.0.4-alpha`, remain unchanged.
+The `atlas/` submodule is pinned to source commit `1601b7e7f8f3b55bbc09bcb17f79cdb7142b082c`, the validated post-release Atlas Physica naming and staging-storage refinement. The historical Physics Atlas `v3.0.5-alpha` tag remains at `b1974d29334d7c4d1d109601787b9c339ba2e653`; all existing release tags, including `v3.0.4-alpha`, remain unchanged.
 
 This deployment repository contains only the public entry wrapper, GitHub Pages routing adapter, project-information control, and deployment workflow. Scientific models, data, the Metric Engine, and the main application remain in `Tech-Echo-Collective/Physics-Atlas`.
 
 The pinned source preserves the v3.0.4 live-data architecture and adds the v3.0.5 stabilization and scientific-validation foundation: candidate metric contracts, fail-closed activation gates, reconstructable observation metadata, identity-review validation, compact public methodology/status information, and viewport-safe controls. GitHub Pages hosts the static frontend while the separately operated production service supplies live scientific metadata.
 
 The public build is configured with `VITE_ATLAS_API_URL` and uses `APIRepository` on clean Atlas routes. Synthetic fixtures and the bounded INSPIRE pilot remain available internally for tests, reproducibility, and an explicit failure fallback, but they are not normal public selector choices. Repository and dataset-kind guards keep these modes isolated. The production API currently exposes no reviewed metric observations, so the public map remains explicitly neutral: missing data is not interpreted as zero and no unvalidated score is displayed.
+
+The naming refinement changes public titles/navigation only. The source retains
+the exact-five fail-closed metric gate; staging storage tooling is not bundled
+into the browser or connected to the production worker. Local validation passes
+type checking, lint, all 12 deployment/branding tests, and the production API
+build with the existing Pages root/deep-route fallback.
 
 ## Exploration path
 
@@ -34,7 +44,7 @@ Institution
 Researcher
 ```
 
-Physics Atlas is an exploration system, not a scientific ranking, prediction, or recommendation system.
+Atlas Physica is an exploration system, not a scientific ranking, prediction, or recommendation system.
 
 ## Local development
 
@@ -74,7 +84,7 @@ npm run build
 
 Pushes to `main` automatically run the GitHub Pages workflow. It:
 
-1. checks out this repository and the pinned Physics Atlas submodule;
+1. checks out this repository and the pinned Atlas source submodule;
 2. installs the locked dependencies;
 3. requires the repository Actions variable `VITE_ATLAS_API_URL` to contain an HTTPS endpoint;
 4. runs lint and deployment tests;
@@ -93,7 +103,7 @@ Deep Atlas URLs render through the Pages `404.html` fallback. GitHub Pages still
 
 ## Documentation
 
-- [About Physics Atlas](https://github.com/Tech-Echo-Collective/Physics-Atlas#physics-atlas)
+- [About Atlas Physica](https://github.com/Tech-Echo-Collective/Physics-Atlas#atlas-physica)
 - [Architecture](https://github.com/Tech-Echo-Collective/Physics-Atlas/blob/main/docs/architecture.md)
 - [Metric methodology](https://github.com/Tech-Echo-Collective/Physics-Atlas/blob/main/docs/metric-methodology-v1.md)
 - [Metric Engine](https://github.com/Tech-Echo-Collective/Physics-Atlas/blob/main/docs/metric-engine.md)

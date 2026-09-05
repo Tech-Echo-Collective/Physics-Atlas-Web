@@ -6,9 +6,9 @@ const WEB_REPOSITORY = `${MAIN_REPOSITORY}-Web`
 
 const projectLinks = [
   {
-    label: 'About Physics Atlas',
+    label: 'About Atlas Physica',
     detail: 'Purpose, scope, and current alpha status',
-    href: `${MAIN_REPOSITORY}#physics-atlas`,
+    href: `${MAIN_REPOSITORY}#atlas-physica`,
   },
   {
     label: 'Architecture',
@@ -87,7 +87,7 @@ export function PublicInformation() {
         <section
           className="public-information-panel"
           id={panelId}
-          aria-label="Physics Atlas project information"
+          aria-label="Atlas Physica project information"
         >
           <header>
             <div>
@@ -104,7 +104,7 @@ export function PublicInformation() {
           </header>
 
           <p className="public-information-summary">
-            Physics Atlas explores scientific ecosystems through geography,
+            Atlas Physica explores scientific ecosystems through geography,
             canonical entities, and provenance-aware relationships. It is not
             a scientific ranking system.
           </p>
@@ -127,7 +127,8 @@ export function PublicInformation() {
           </nav>
 
           <p className="public-information-footnote">
-            Documentation opens separately so the current Atlas position stays
+            Atlas Physica is developed and maintained by Tech Echo Collective.
+            {' '}Documentation opens separately so the current Atlas position stays
             intact.
           </p>
         </section>
