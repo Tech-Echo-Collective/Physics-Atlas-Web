@@ -1,9 +1,12 @@
-# Atlas Physica deployment roadmap
+# Atlas Physicus deployment roadmap
 
-This page summarizes the public Atlas baseline. Detailed scientific and engineering documentation remains in the [main Atlas Physica repository](https://github.com/Tech-Echo-Collective/Physics-Atlas).
+This page summarizes the public Atlas baseline. Detailed scientific and engineering documentation remains in the [main Atlas Physicus repository](https://github.com/Tech-Echo-Collective/atlas-physicus).
 
-Atlas Physica is the current product name. Existing repositories, deployments,
-technical identifiers and historical release records retain their original names.
+Atlas Physicus is the canonical product name within Tech Echo Physica. Its
+primary repository is `atlas-physicus`; historical release records and deployed
+backend compatibility identifiers remain unchanged. The auxiliary Pages
+repository remains `Physics-Atlas-Web`; the three primary family repositories
+are `atlas-physicus`, `illuminatio-physica`, and `theatrum-physicum`.
 
 ## Released foundations
 
@@ -27,7 +30,7 @@ PostgreSQL persistence, migrations, FastAPI access, incremental source connector
 
 Viewport-safe map controls, reviewable candidate definitions for the five base metrics, metric-specific normalization and fail-closed activation gates, reconstructable observation metadata, independent identity-review validation, and compact public methodology/status information.
 
-The public instance pins validated source commit `1601b7e7f8f3b55bbc09bcb17f79cdb7142b082c`, including the Atlas Physica naming refinement and stricter exact-five withholding. The historical Physics Atlas `v3.0.5-alpha` tag remains unchanged at `b1974d29334d7c4d1d109601787b9c339ba2e653`. The GitHub Pages build uses the operated Railway API through `APIRepository` as its normal data path. Static fixtures and the bounded pilot remain internal reproducibility and fallback resources rather than normal public dataset choices.
+This deployment wrapper pins validated source commit `21bfcdb885b6cac4dd91bf8a271de359eebed9bd`, including the Atlas Physicus / Tech Echo Physica naming alignment and the unchanged exact-five withholding boundary. The historical Physics Atlas `v3.0.5-alpha` tag remains unchanged at `b1974d29334d7c4d1d109601787b9c339ba2e653`. The GitHub Pages build uses the operated Railway API through `APIRepository` as its normal data path. Static fixtures and the bounded pilot remain internal reproducibility and fallback resources rather than normal public dataset choices.
 
 Live scientific metadata is active, but all five base metric definitions remain experimental candidates and no reviewed metric observations are published. The current public map therefore remains neutral and explicitly distinguishes missing values from zero; activating unvalidated scores is outside this milestone.
 

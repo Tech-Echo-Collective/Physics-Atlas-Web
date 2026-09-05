@@ -1,10 +1,17 @@
-# Atlas Physica Web
+# Atlas Physicus Web
 
-The official public deployment entry for [Atlas Physica](https://github.com/Tech-Echo-Collective/Physics-Atlas).
+The official public deployment entry for [Atlas Physicus](https://github.com/Tech-Echo-Collective/atlas-physicus).
 
-Atlas Physica is developed and maintained by Tech Echo Collective. Previously
-named Physics Atlas, the product retains its existing repository names,
-technical identifiers, deployment URLs and historical release records.
+Part of Tech Echo Physica, a Tech Echo Collective project family for exploring physics through research mapping, knowledge structures, and interactive physical systems.
+
+The primary source repository is `atlas-physicus`. The independently versioned
+Web wrapper pins that source and keeps the existing public Atlas deployment.
+The three primary project repositories are `atlas-physicus`,
+`illuminatio-physica`, and `theatrum-physicum`. This auxiliary Pages repository
+remains `Physics-Atlas-Web`, with the matching `physics-atlas-web` package name.
+Historical records, scientific contracts and deployed backend compatibility
+identifiers remain intact; see the
+[source naming audit](https://github.com/Tech-Echo-Collective/atlas-physicus/blob/main/docs/production-deployment.md#naming-and-deployment-compatibility).
 
 Opening the website enters the interactive Atlas directly. The default state is the global Physics-domain heatmap, with field and year controls available on the map. Project documentation is available through a secondary information control and does not replace the Atlas surface.
 
@@ -12,15 +19,15 @@ Public URL: <https://atlas.techecho.org/>
 
 ## Source baseline
 
-The `atlas/` submodule is pinned to source commit `1601b7e7f8f3b55bbc09bcb17f79cdb7142b082c`, the validated post-release Atlas Physica naming and staging-storage refinement. The historical Physics Atlas `v3.0.5-alpha` tag remains at `b1974d29334d7c4d1d109601787b9c339ba2e653`; all existing release tags, including `v3.0.4-alpha`, remain unchanged.
+The `atlas/` submodule is pinned to source commit `21bfcdb885b6cac4dd91bf8a271de359eebed9bd`, which aligns Atlas Physicus with the Tech Echo Physica family and canonical source repository. The historical Physics Atlas `v3.0.5-alpha` tag remains at `b1974d29334d7c4d1d109601787b9c339ba2e653`; all existing release tags, including `v3.0.4-alpha`, remain unchanged.
 
-This deployment repository contains only the public entry wrapper, GitHub Pages routing adapter, project-information control, and deployment workflow. Scientific models, data, the Metric Engine, and the main application remain in `Tech-Echo-Collective/Physics-Atlas`.
+This deployment repository contains only the public entry wrapper, GitHub Pages routing adapter, project-information control, and deployment workflow. Scientific models, data, the Metric Engine, and the main application remain in `Tech-Echo-Collective/atlas-physicus`.
 
 The pinned source preserves the v3.0.4 live-data architecture and adds the v3.0.5 stabilization and scientific-validation foundation: candidate metric contracts, fail-closed activation gates, reconstructable observation metadata, identity-review validation, compact public methodology/status information, and viewport-safe controls. GitHub Pages hosts the static frontend while the separately operated production service supplies live scientific metadata.
 
 The public build is configured with `VITE_ATLAS_API_URL` and uses `APIRepository` on clean Atlas routes. Synthetic fixtures and the bounded INSPIRE pilot remain available internally for tests, reproducibility, and an explicit failure fallback, but they are not normal public selector choices. Repository and dataset-kind guards keep these modes isolated. The production API currently exposes no reviewed metric observations, so the public map remains explicitly neutral: missing data is not interpreted as zero and no unvalidated score is displayed.
 
-The naming refinement changes public titles/navigation only. The source retains
+The naming alignment updates public identity, family wording and source links. The source retains
 the exact-five fail-closed metric gate; staging storage tooling is not bundled
 into the browser or connected to the production worker. Local validation passes
 type checking, lint, all 12 deployment/branding tests, and the production API
@@ -44,7 +51,7 @@ Institution
 Researcher
 ```
 
-Atlas Physica is an exploration system, not a scientific ranking, prediction, or recommendation system.
+Atlas Physicus is an exploration system, not a scientific ranking, prediction, or recommendation system.
 
 ## Local development
 
@@ -103,12 +110,12 @@ Deep Atlas URLs render through the Pages `404.html` fallback. GitHub Pages still
 
 ## Documentation
 
-- [About Atlas Physica](https://github.com/Tech-Echo-Collective/Physics-Atlas#atlas-physica)
-- [Architecture](https://github.com/Tech-Echo-Collective/Physics-Atlas/blob/main/docs/architecture.md)
-- [Metric methodology](https://github.com/Tech-Echo-Collective/Physics-Atlas/blob/main/docs/metric-methodology-v1.md)
-- [Metric Engine](https://github.com/Tech-Echo-Collective/Physics-Atlas/blob/main/docs/metric-engine.md)
-- [Entity resolution](https://github.com/Tech-Echo-Collective/Physics-Atlas/blob/main/docs/entity-resolution.md)
-- [Knowledge graph](https://github.com/Tech-Echo-Collective/Physics-Atlas/blob/main/docs/knowledge-graph.md)
+- [About Atlas Physicus](https://github.com/Tech-Echo-Collective/atlas-physicus#atlas-physicus)
+- [Architecture](https://github.com/Tech-Echo-Collective/atlas-physicus/blob/main/docs/architecture.md)
+- [Metric methodology](https://github.com/Tech-Echo-Collective/atlas-physicus/blob/main/docs/metric-methodology-v1.md)
+- [Metric Engine](https://github.com/Tech-Echo-Collective/atlas-physicus/blob/main/docs/metric-engine.md)
+- [Entity resolution](https://github.com/Tech-Echo-Collective/atlas-physicus/blob/main/docs/entity-resolution.md)
+- [Knowledge graph](https://github.com/Tech-Echo-Collective/atlas-physicus/blob/main/docs/knowledge-graph.md)
 - [Deployment roadmap](docs/roadmap.md)
 
 ## License

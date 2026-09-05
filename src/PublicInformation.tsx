@@ -1,14 +1,14 @@
 import { useEffect, useId, useState, useSyncExternalStore } from 'react'
 import { createPortal } from 'react-dom'
 
-const MAIN_REPOSITORY = 'https://github.com/Tech-Echo-Collective/Physics-Atlas'
-const WEB_REPOSITORY = `${MAIN_REPOSITORY}-Web`
+const MAIN_REPOSITORY = 'https://github.com/Tech-Echo-Collective/atlas-physicus'
+const WEB_REPOSITORY = 'https://github.com/Tech-Echo-Collective/Physics-Atlas-Web'
 
 const projectLinks = [
   {
-    label: 'About Atlas Physica',
+    label: 'About Atlas Physicus',
     detail: 'Purpose, scope, and current alpha status',
-    href: `${MAIN_REPOSITORY}#atlas-physica`,
+    href: `${MAIN_REPOSITORY}#atlas-physicus`,
   },
   {
     label: 'Architecture',
@@ -87,7 +87,7 @@ export function PublicInformation() {
         <section
           className="public-information-panel"
           id={panelId}
-          aria-label="Atlas Physica project information"
+          aria-label="Atlas Physicus project information"
         >
           <header>
             <div>
@@ -104,7 +104,7 @@ export function PublicInformation() {
           </header>
 
           <p className="public-information-summary">
-            Atlas Physica explores scientific ecosystems through geography,
+            Atlas Physicus explores scientific ecosystems through geography,
             canonical entities, and provenance-aware relationships. It is not
             a scientific ranking system.
           </p>
@@ -127,7 +127,7 @@ export function PublicInformation() {
           </nav>
 
           <p className="public-information-footnote">
-            Atlas Physica is developed and maintained by Tech Echo Collective.
+            Part of Tech Echo Physica, a Tech Echo Collective project family for exploring physics through research mapping, knowledge structures, and interactive physical systems.
             {' '}Documentation opens separately so the current Atlas position stays
             intact.
           </p>

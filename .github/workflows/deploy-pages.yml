@@ -1,4 +1,4 @@
-name: Deploy Atlas Physica to GitHub Pages
+name: Deploy Atlas Physicus to GitHub Pages
 
 on:
   push:
