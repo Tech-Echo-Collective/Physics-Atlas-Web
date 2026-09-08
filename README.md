@@ -1,5 +1,34 @@
 # Atlas Physicus Web
 
+## Public activity preview — September 8, 2026
+
+The owner explicitly authorized immediate publication of the current heatmap
+without waiting for the joint five-metric certification milestone. The public
+homepage now serves an **observed activity preview** from the retained 2018–2023
+nuclear-physics acquisition: 15,358 INSPIRE source records and 1,623 institutions.
+It counts already resolved fractional paper-time affiliation shares; missing
+shares remain unassigned. Every year's totals reconcile to its acquisition
+summary. Source records are not asserted to be deduplicated canonical papers.
+
+The map supports all six years, country selection, institution search and
+institution locations. The original explorer remains at `/?view=full-atlas` and
+its existing deep URLs. Preview colour uses a fixed logarithmic scale across the
+six years (separate country/institution maxima); exact quantities appear in the
+side panel. This is an activity preview, not an Impact, Connectivity, Diversity,
+Momentum, composite, or certified Metric System v1 release.
+
+The compact public dataset is `public/data/observed-activity-20260908.json`, with
+annual mapped/unassigned mass, input hashes and acquisition manifest references.
+The export script consumes only the owner's existing trusted checkpoints. The
+preview introduces no provider crawl or production database change. The source
+submodule is pinned to `0dd5aa181f3e27fe81f84314ee5b81e51361cc32`, whose CI passed.
+
+Validation: source-record uniqueness, attribution mass conservation and all six
+annual acquisition totals checked during export; TypeScript, production build,
+Web lint and all 16 deployment tests pass. Public deployment is recorded by the
+GitHub Pages workflow for this commit.
+
+
 The official public deployment entry for [Atlas Physicus](https://github.com/Tech-Echo-Collective/atlas-physicus).
 
 Part of Tech Echo Physica, a Tech Echo Collective project family for exploring physics through research mapping, knowledge structures, and interactive physical systems.
@@ -19,7 +48,7 @@ Public URL: <https://atlas.techecho.org/>
 
 ## Source baseline
 
-The `atlas/` submodule is pinned to source commit `21bfcdb885b6cac4dd91bf8a271de359eebed9bd`, which aligns Atlas Physicus with the Tech Echo Physica family and canonical source repository. The historical Physics Atlas `v3.0.5-alpha` tag remains at `b1974d29334d7c4d1d109601787b9c339ba2e653`; all existing release tags, including `v3.0.4-alpha`, remain unchanged.
+The previous public `atlas/` submodule was pinned to source commit `21bfcdb885b6cac4dd91bf8a271de359eebed9bd`, which aligns Atlas Physicus with the Tech Echo Physica family and canonical source repository. The historical Physics Atlas `v3.0.5-alpha` tag remains at `b1974d29334d7c4d1d109601787b9c339ba2e653`; all existing release tags, including `v3.0.4-alpha`, remain unchanged.
 
 This deployment repository contains only the public entry wrapper, GitHub Pages routing adapter, project-information control, and deployment workflow. Scientific models, data, the Metric Engine, and the main application remain in `Tech-Echo-Collective/atlas-physicus`.
 
