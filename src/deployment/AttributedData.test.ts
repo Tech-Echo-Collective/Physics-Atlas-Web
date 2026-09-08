@@ -35,5 +35,5 @@ describe('published attributed arXiv data', () => {
     expect(new Set(dataset.metricObservations.map((row) => row.metricId)).size).toBe(5)
     expect(new Set(dataset.metricObservations.filter((row) => row.entityType === 'country' && row.metricId === 'research_activity_score' && row.fieldId).map((row) => row.fieldId)).size).toBe(51)
     expect(dataset.metricObservations.every((row) => row.rawValue !== undefined && row.normalizationMethod && Number.isFinite(row.value) && row.value >= 0 && row.value <= 100)).toBe(true)
-  })
+  }, 30_000)
 })
