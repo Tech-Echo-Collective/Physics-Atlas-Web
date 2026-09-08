@@ -1,50 +1,18 @@
 # Atlas Physicus Web
 
-## Public activity preview — September 8, 2026
+## Public attributed arXiv explorer — September 8, 2026
 
-The owner explicitly authorized immediate publication of the current heatmap
-without waiting for the joint five-metric certification milestone. The public
-homepage now serves an **observed activity preview** from the retained 2018–2023
-nuclear-physics acquisition: 15,358 INSPIRE source records and 1,623 institutions.
-It counts already resolved fractional paper-time affiliation shares; missing
-shares remain unassigned. Every year's totals reconcile to its acquisition
-summary. Source records are not asserted to be deduplicated canonical papers.
+The homepage uses the original full explorer with 51 native arXiv physics categories and freshly acquired INSPIRE records spanning 2018–2026. This supersedes the earlier nuclear-only activity preview. The source pin is `e224d07`.
 
-The map supports all six years, country selection, institution search and
-institution locations. The original explorer remains at `/?view=full-atlas` and
-its existing deep URLs. Preview colour uses a fixed logarithmic scale across the
-six years (separate country/institution maxima); exact quantities appear in the
-side panel. This is an activity preview, not an Impact, Connectivity, Diversity,
-Momentum, composite, or certified Metric System v1 release.
+61,846 INSPIRE records were retrieved; 46,524 dated papers have supported paper-time institution attribution, covering 4,569 institutions in 135 countries/regions. Every one of 459 category/year queries succeeded, and 5,423 institution authority records were recovered. 841,619 of 1,015,866 source author positions have supported attribution. Unknown shares remain unallocated. Exact ROR identity links unify institutions; ambiguous affiliations do not acquire guessed ownership.
 
-The compact public dataset is `public/data/observed-activity-20260908.json`, with
-annual mapped/unassigned mass, input hashes and acquisition manifest references.
-The export script consumes only the owner's existing trusted checkpoints. The
-preview introduces no provider crawl or production database change. The source
-submodule is pinned to `0dd5aa181f3e27fe81f84314ee5b81e51361cc32`, whose CI passed.
+Five observed metric dimensions have raw values and 0–100 normalization with retained cohort parameters. Category classification follows native arXiv cross-lists; the Physics overview averages available normalized category scores equally. Yearly metric files and the existing on-demand relationship transport keep the full institution/researcher/paper exploration. Public source toggles are hidden for this integrated dataset.
 
-Validation: source-record uniqueness, attribution mass conservation and all six
-annual acquisition totals checked during export; TypeScript, production build,
-Web lint and all 16 deployment tests pass. Public deployment is recorded by the
-GitHub Pages workflow for this commit.
+This is a bounded INSPIRE corpus: up to 250 most-recent source records per category/year, not a complete arXiv census or representative sample. 2026 is partial. Impact uses the present citation capture date for older publication cohorts. Momentum covers 2023–2025 and is affected by differing acquisition completeness. Missing values are not zero. The earlier joint five-metric certification experiment is not a prerequisite for this owner-authorized observed release.
 
+Coverage, query receipts, attribution counts and methods are published at `/data/arxiv-20260908/coverage.html` and `.json`. Public immutable assets total approximately 60.6 MB. The pipeline and methodology are in the pinned source repository's `pipeline/arxiv-attributed/` directory; the retained source SQLite snapshot stays in the owner's evidence workspace. No provider secrets or API credentials are shipped to the browser.
 
-The official public deployment entry for [Atlas Physicus](https://github.com/Tech-Echo-Collective/atlas-physicus).
-
-Part of Tech Echo Physica, a Tech Echo Collective project family for exploring physics through research mapping, knowledge structures, and interactive physical systems.
-
-The primary source repository is `atlas-physicus`. The independently versioned
-Web wrapper pins that source and keeps the existing public Atlas deployment.
-The three primary project repositories are `atlas-physicus`,
-`illuminatio-physica`, and `theatrum-physicum`. This auxiliary Pages repository
-remains `Physics-Atlas-Web`, with the matching `physics-atlas-web` package name.
-Historical records, scientific contracts and deployed backend compatibility
-identifiers remain intact; see the
-[source naming audit](https://github.com/Tech-Echo-Collective/atlas-physicus/blob/main/docs/production-deployment.md#naming-and-deployment-compatibility).
-
-Opening the website enters the interactive Atlas directly. The default state is the global Physics-domain heatmap, with field and year controls available on the map. Project documentation is available through a secondary information control and does not replace the Atlas surface.
-
-Public URL: <https://atlas.techecho.org/>
+Validation: TypeScript, lint, all 18 Web tests, real default-year schema validation, all 51 category activity observations, finite normalized values, exact source receipt checks, and the production build passed. Local browser checks confirmed the full colored map, native category selection, and yearly loading. GitHub Pages deployment and public verification follow this commit.
 
 ## Source baseline
 

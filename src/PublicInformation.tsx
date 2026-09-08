@@ -5,6 +5,7 @@ const MAIN_REPOSITORY = 'https://github.com/Tech-Echo-Collective/atlas-physicus'
 const WEB_REPOSITORY = 'https://github.com/Tech-Echo-Collective/Physics-Atlas-Web'
 
 const projectLinks = [
+  { label: 'Research coverage & attribution', detail: '51 arXiv categories, acquired years, verified shares and source receipts', href: '/data/arxiv-20260908/coverage.html' },
   {
     label: 'About Atlas Physicus',
     detail: 'Purpose, scope, and current alpha status',
@@ -18,7 +19,7 @@ const projectLinks = [
   {
     label: 'Methodology',
     detail: 'Metric vocabulary, interpretation, and limits',
-    href: `${MAIN_REPOSITORY}/blob/main/docs/metric-methodology-v1.md`,
+    href: `${MAIN_REPOSITORY}/blob/main/pipeline/arxiv-attributed/README.md`,
   },
   {
     label: 'Roadmap',
