@@ -22,15 +22,24 @@ const base = (async () => {
   const response = await fetch(releaseUrl)
   if (!response.ok) throw new Error('The research coverage receipt is unavailable.')
   const coverage = await response.json() as Coverage
-  const [packed, relations] = await Promise.all([
+  const [packed, relations, institutionNames] = await Promise.all([
     readGzip(new URL('atlas.json.gz', releaseUrl), { bytes: coverage.coreBytes, decodedBytes: coverage.coreDecodedBytes, sha256: coverage.coreSha256, decodedSha256: coverage.coreDecodedSha256 }) as Promise<Packed>,
     fetch(new URL('relationships.json', releaseUrl)).then((r) => { if (!r.ok) throw new Error('Paper relationship index is unavailable.'); return r.json() as Promise<unknown> }),
+    fetch(new URL('canonical-names.json', releaseUrl)).then((r) => { if (!r.ok) throw new Error('Institution names are unavailable.'); return r.json() as Promise<Record<string, string>> }),
   ])
   if (packed.version !== 'arxiv-atlas-packed-v1') throw new Error('Unsupported research dataset version.')
   for (const rows of Object.values(packed.dataset)) {
     if (!Array.isArray(rows)) continue
     for (const row of rows as Record<string, unknown>[]) {
       if (typeof row.provenance === 'number') row.provenance = packed.provenance[row.provenance]
+    }
+  }
+  for (const institution of packed.dataset.institutions as { id: string; name: string; canonicalName: string; aliases: string[] }[]) {
+    const name = institutionNames[institution.id]
+    if (name && institution.aliases.includes(name)) {
+      institution.aliases = [...new Set([...institution.aliases, institution.name])].filter((alias) => alias !== name)
+      institution.name = name
+      institution.canonicalName = name
     }
   }
   return { coverage, packed, relations: uiShardsSchema.parse(relations) }
