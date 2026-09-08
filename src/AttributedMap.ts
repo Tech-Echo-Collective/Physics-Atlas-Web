@@ -3,6 +3,7 @@ import { StaticAtlasRepository } from '../atlas/src/data/StaticAtlasRepository'
 import type { AtlasEntityScope, ScopedAtlasRepository } from '../atlas/src/data/ScopedAtlasRepository'
 import type { InstitutionProfileData, ResearcherProfileData, ResearchGroupProfileData } from '../atlas/src/profiles/ProfileService'
 import { readGzip, type DataReference } from './AttributedDataTransport'
+import { applyInstitutionMetadataCorrections } from '../atlas/src/data/InstitutionMetadataCorrections'
 import type { DetailCommand, DetailContext, DetailResponse } from './AttributedWorkerProtocol'
 
 type MapManifest = { version: string; sourceVersion: string; bootstrap: DataReference; years: Record<string, Record<string, DataReference>> }
@@ -70,6 +71,7 @@ async function loadBootstrap() {
       if (manifest.version !== 'arxiv-map-partitions-v1') throw new Error('Unsupported map dataset version.')
       const core = await readGzip(new URL(manifest.bootstrap.path!, releaseUrl), manifest.bootstrap) as AtlasDataset
       if (core.metadata.provenance.version !== manifest.sourceVersion) throw new Error('Map data has inconsistent release lineage.')
+      core.institutions = applyInstitutionMetadataCorrections(core.institutions, manifest.sourceVersion)
       return { manifest, core }
     })()
     void bootstrap.catch(() => { bootstrap = undefined })

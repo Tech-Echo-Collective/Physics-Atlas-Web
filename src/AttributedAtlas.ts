@@ -1,5 +1,6 @@
 import type { AtlasDataset, DataProvenance, MetricObservation } from '../atlas/src/domain/models'
 import { atlasDatasetSchema } from '../atlas/src/domain/schemas'
+import { applyInstitutionMetadataCorrections } from '../atlas/src/data/InstitutionMetadataCorrections'
 import { ShardedAtlasRepository, uiShardsSchema } from '../atlas/src/data/ShardedAtlasRepository'
 
 const releaseUrl = new URL('/data/arxiv-20260908/coverage.json', self.location.origin)
@@ -30,6 +31,10 @@ const base = (async () => {
       institution.canonicalName = name
     }
   }
+  packed.dataset.institutions = applyInstitutionMetadataCorrections(
+    packed.dataset.institutions as AtlasDataset['institutions'],
+    (packed.dataset.metadata as AtlasDataset['metadata']).provenance.version,
+  )
   return { coverage, packed, relations: uiShardsSchema.parse(relations) }
 })()
 
