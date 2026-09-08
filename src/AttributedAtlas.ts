@@ -2,22 +2,10 @@ import type { AtlasDataset, DataProvenance, MetricObservation } from '../atlas/s
 import { atlasDatasetSchema } from '../atlas/src/domain/schemas'
 import { ShardedAtlasRepository, uiShardsSchema } from '../atlas/src/data/ShardedAtlasRepository'
 
-const releaseUrl = new URL('/data/arxiv-20260908/coverage.json', window.location.origin)
-type Reference = { path?: string; bytes: number; decodedBytes: number; sha256: string; decodedSha256: string }
+const releaseUrl = new URL('/data/arxiv-20260908/coverage.json', self.location.origin)
+import { readGzip, type DataReference as Reference } from './AttributedDataTransport'
 type Coverage = { coreBytes: number; coreDecodedBytes: number; coreSha256: string; coreDecodedSha256: string; metricFiles: Record<string, Reference> }
 type Packed = { version: string; provenance: DataProvenance[]; normalizationParameters: MetricObservation['normalizationParameters'][]; dataset: Record<string, unknown> }
-async function readGzip(url: URL, reference: Reference): Promise<unknown> {
-  const response = await fetch(url, { signal: AbortSignal.timeout(90_000) })
-  if (!response.ok) throw new Error(`Research data could not be loaded (${response.status}).`)
-  const bytes = await response.arrayBuffer()
-  const transparentlyDecoded = response.headers.get('content-encoding')?.toLowerCase() === 'gzip'
-  const digest = await crypto.subtle.digest('SHA-256', bytes)
-  const hash = [...new Uint8Array(digest)].map((v) => v.toString(16).padStart(2, '0')).join('')
-  if (bytes.byteLength !== (transparentlyDecoded ? reference.decodedBytes : reference.bytes) || hash !== (transparentlyDecoded ? reference.decodedSha256 : reference.sha256)) throw new Error('Research data checksum differs from its published source receipt.')
-  const decoded = transparentlyDecoded ? bytes : await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer()
-  if (decoded.byteLength !== reference.decodedBytes) throw new Error('Research data size differs from its published receipt.')
-  return JSON.parse(new TextDecoder().decode(decoded))
-}
 const base = (async () => {
   const response = await fetch(releaseUrl)
   if (!response.ok) throw new Error('The research coverage receipt is unavailable.')
@@ -58,4 +46,8 @@ export async function loadAttributedAtlas(year: number): Promise<ShardedAtlasRep
   })
   const dataset = atlasDatasetSchema.parse({ ...packed.dataset, metadata: { ...(packed.dataset.metadata as AtlasDataset['metadata']), period: String(year) }, metricObservations })
   return ShardedAtlasRepository.create(dataset, relations, new URL('relationships.json', releaseUrl))
+}
+
+export async function loadAttributedCatalog(): Promise<AtlasDataset> {
+  return (await base).packed.dataset as unknown as AtlasDataset
 }
