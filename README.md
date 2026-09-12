@@ -8,8 +8,9 @@ at the **8 September 2026** capture; no further acquisition, expansion or metric
 certification is planned.
 
 The public map loads the retained data files directly from GitHub Pages. It does
-not require Railway, a live API or a database. The former Railway backend is
-being retired separately after its database backup is restored and verified.
+not require Railway, a live API or a database. The former Railway backend has a verified full database backup and its
+subscription renewal is cancelled. Its project is scheduled for deletion on
+14 September 2026; [the archive record](https://github.com/Tech-Echo-Collective/atlas-physicus/blob/main/docs/ARCHIVE.md) preserves the retirement evidence.
 The frozen source, methods, coverage receipts and missing-data disclosures remain
 part of the archive; this is not a complete or representative census of physics.
 
