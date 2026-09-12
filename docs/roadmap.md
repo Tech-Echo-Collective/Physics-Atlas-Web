@@ -8,6 +8,15 @@ backend compatibility identifiers remain unchanged. The auxiliary Pages
 repository remains `Physics-Atlas-Web`; the three primary family repositories
 are `atlas-physicus`, `illuminatio-physica`, and `theatrum-physicum`.
 
+## Closed — 12 September 2026
+
+Active development has ended. The [archive status](../README.md#archive-status)
+is authoritative: the static 8 September research snapshot and final explorer
+remain public, with no further data updates or planned releases. Railway is no
+longer required by the public map.
+
+The release notes below are historical and do not describe current services.
+
 ## Released foundations
 
 ### v3.0.1 — Metric Engine Foundation

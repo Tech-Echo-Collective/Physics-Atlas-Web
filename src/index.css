@@ -13,16 +13,19 @@ html {
 }
 
 .public-information-trigger {
-  display: grid;
-  width: 36px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
   height: 36px;
-  padding: 0;
+  padding: 0 12px;
   border: 1px solid var(--panel-border);
   border-radius: 9px;
   color: #b7c8ce;
   background: rgba(8, 20, 32, 0.86);
   cursor: pointer;
-  place-items: center;
+  font-size: 0.75rem;
   backdrop-filter: blur(12px);
 }
 

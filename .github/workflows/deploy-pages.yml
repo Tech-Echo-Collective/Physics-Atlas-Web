@@ -18,8 +18,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      VITE_ATLAS_API_URL: ${{ vars.VITE_ATLAS_API_URL }}
     steps:
       - name: Check out the deployment repository
         uses: actions/checkout@v6
@@ -35,11 +33,6 @@ jobs:
 
       - name: Install locked dependencies
         run: npm ci
-
-      - name: Validate the public API configuration
-        run: >-
-          node -e "const url = new URL(process.env.VITE_ATLAS_API_URL);
-          if (url.protocol !== 'https:') throw new Error('VITE_ATLAS_API_URL must use HTTPS');"
 
       - name: Validate the deployment adapter
         run: |

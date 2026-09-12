@@ -8,7 +8,7 @@ const projectLinks = [
   { label: 'Research coverage & attribution', detail: '51 arXiv categories, acquired years, verified shares and source receipts', href: '/data/arxiv-20260908/coverage.html' },
   {
     label: 'About Atlas Physicus',
-    detail: 'Purpose, scope, and current alpha status',
+    detail: 'Purpose, scope, and archived project status',
     href: `${MAIN_REPOSITORY}#atlas-physicus`,
   },
   {
@@ -22,9 +22,9 @@ const projectLinks = [
     href: `${MAIN_REPOSITORY}/blob/main/pipeline/arxiv-attributed/README.md`,
   },
   {
-    label: 'Roadmap',
-    detail: 'Released foundations and planned next stage',
-    href: `${WEB_REPOSITORY}/blob/main/docs/roadmap.md`,
+    label: 'Archive status',
+    detail: 'Closure date, frozen data and preserved source',
+    href: `${WEB_REPOSITORY}#archive-status`,
   },
   {
     label: 'GitHub Repository',
@@ -82,6 +82,7 @@ export function PublicInformation() {
         onClick={() => setIsOpen((open) => !open)}
       >
         <span aria-hidden="true">i</span>
+        Archived
       </button>
 
       {isOpen && (
@@ -92,7 +93,7 @@ export function PublicInformation() {
         >
           <header>
             <div>
-              <p>Public Atlas · v3.0.5-alpha</p>
+              <p>Archived · 12 September 2026</p>
               <h2>Project information</h2>
             </div>
             <button
@@ -103,6 +104,12 @@ export function PublicInformation() {
               ×
             </button>
           </header>
+
+          <p className="public-information-summary">
+            Active development has ended. This interactive archive preserves the
+            research snapshot captured on 8 September 2026. Data is no longer
+            updated.
+          </p>
 
           <p className="public-information-summary">
             Atlas Physicus explores scientific ecosystems through geography,
